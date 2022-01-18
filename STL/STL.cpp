@@ -1,7 +1,8 @@
 ﻿#include<iostream>
 #include<array>
 #include<vector>
-using namespace std;
+#include<deque>
+//using namespace std;
 using std::cin;
 using std::cout;
 using std::endl;
@@ -9,10 +10,12 @@ using std::endl;
 #define tab "\t"
 
 //#define STL_ARRAY
-#define STL_VECTOR
-template<typename T>void print(const vector<T>& vec)
+//#define STL_VECTOR
+//#define STL_DEQUE
+
+template<typename T>void print(const std::vector<T>& vec)
 {
-	for (typename vector<T>::const_iterator it = vec.begin(); it != vec.end(); it++)
+	for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); it++)
 	{
 		cout << *it << tab;
 	}
@@ -109,5 +112,22 @@ void main()
 	print(vec);
 	print(powers);
 #endif // STL_VECTOR
+#ifdef STL_DEQUE
+	std::deque<int> deque = { 3,5,8,13,21 };
+	deque.push_back(34);
+	deque.push_back(55);
+	deque.push_back(89);
+	
+	deque.push_front(2);
+	deque.push_front(1);
+	deque.push_front(1);
+	deque.push_front(0);
+	for (int i = 0; i < deque.size(); i++)
+	{
+		cout << deque[i] << tab;
+	}
+	cout << endl;
+#endif // STL_DEQUE
+	
 
 }
