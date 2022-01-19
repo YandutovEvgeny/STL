@@ -2,6 +2,7 @@
 #include<array>
 #include<vector>
 #include<deque>
+#include<list>
 //using namespace std;
 using std::cin;
 using std::cout;
@@ -12,6 +13,7 @@ using std::endl;
 //#define STL_ARRAY
 //#define STL_VECTOR
 //#define STL_DEQUE
+#define STL_LIST
 
 template<typename T>void print(const std::vector<T>& vec)
 {
@@ -128,6 +130,28 @@ void main()
 	}
 	cout << endl;
 #endif // STL_DEQUE
+#ifdef STL_LIST
+	std::list<int> list = { 3,5,8,13,21 };
+	for (int i : list)cout << i << tab; cout << endl;
 	
+	//insert
+	int insert_element;
+	int insert_index;
+	cout << "Введите индекс добавляемого элемента: "; cin >> insert_index;
+	cout << "Введите значение добавляемого элемента: "; cin >> insert_element;
+	std::list<int>::iterator iterator = list.begin();
+	for (int i = 0; i < insert_index; i++)iterator++;
+	list.insert(iterator, insert_element);
+	for (int i : list)cout << i << tab; cout << endl;
 
+	//erase
+	int erase_index;
+	cout << "Введите индекс удаляемого элемента: "; cin >> erase_index;
+	std::list<int>::iterator position = list.begin();
+	for (int i = 0; i < erase_index; i++)position++;
+	list.erase(position);
+	for (int i : list)cout << i << tab; cout << endl;
+#endif // STL_LIST
+
+	
 }
