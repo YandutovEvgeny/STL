@@ -3,6 +3,7 @@
 #include<vector>
 #include<deque>
 #include<list>
+#include<forward_list>
 //using namespace std;
 using std::cin;
 using std::cout;
@@ -13,7 +14,8 @@ using std::endl;
 //#define STL_ARRAY
 //#define STL_VECTOR
 //#define STL_DEQUE
-#define STL_LIST
+//#define STL_LIST
+#define FORWARD_LIST
 
 template<typename T>void print(const std::vector<T>& vec)
 {
@@ -104,7 +106,7 @@ void main()
 	for (int i : vec)cout << i << tab; cout << endl;*/
 
 	cout << "Введите индекс удаляемого элемента:\t"; cin >> index;
-	cout << "Введите количество добавлений:\t\t"; cin >> count;
+	cout << "Введите количество удалений:\t\t"; cin >> count;
 	if (index <= vec.size())vec.erase(vec.begin() + index, vec.begin()+index+count);
 	else cout << "Error: out of range" << endl;
 	print(vec);
@@ -138,7 +140,10 @@ void main()
 	int insert_element;
 	int insert_index;
 	int insert_count;
-	cout << "Введите индекс добавляемого элемента: "; cin >> insert_index;
+	do
+	{
+		cout << "Введите индекс добавляемого элемента: "; cin >> insert_index;
+	} while (insert_index <= list.size());
 	cout << "Введите количество добавляемого элемента: "; cin >> insert_count;
 	cout << "Введите значение добавляемого элемента: "; cin >> insert_element;
 	std::list<int>::iterator iterator = list.begin();
@@ -168,6 +173,26 @@ void main()
 	list.erase(it1, it2);
 	for (int i : list)cout << i << tab; cout << endl;
 #endif // STL_LIST
+#ifdef FORWARD_LIST
+	std::forward_list<int> list = { 3,5,8,13,21 };
+	list.push_front(123);
+	/*std::forward_list<int>::iterator it = list.begin();
+	for(int i=0;i<list.size)*/
+	//list.insert_after(list.end(), 1024);
+	for (std::forward_list<int>::iterator it = list.begin(); it != list.end(); it++)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
+	list.reverse();
+	list.push_front(1024);
+	list.reverse();
+	for (int i : list)cout << i << tab; cout << endl;
+
+	std::list<int> list2;
+	cout << "ForwardList max size:\t" << list.max_size() << endl;
+	cout << "List max size:\t\t" << list2.max_size() << endl;
+#endif // FORWARD_LIST
 
 	
 }
