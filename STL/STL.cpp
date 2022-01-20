@@ -163,7 +163,8 @@ void main()
 	std::list<int>::iterator it1, it2;
 	it1 = it2 = list.begin();
 	for (int i = 0; i < begin; i++)it1++;
-	std::advance(it2, end);
+	if (end < list.size())std::advance(it2, end);
+	else cout << "Error: out of range!" << endl;
 	list.erase(it1, it2);
 	for (int i : list)cout << i << tab; cout << endl;
 #endif // STL_LIST
