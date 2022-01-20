@@ -137,19 +137,34 @@ void main()
 	//insert
 	int insert_element;
 	int insert_index;
+	int insert_count;
 	cout << "Введите индекс добавляемого элемента: "; cin >> insert_index;
+	cout << "Введите количество добавляемого элемента: "; cin >> insert_count;
 	cout << "Введите значение добавляемого элемента: "; cin >> insert_element;
 	std::list<int>::iterator iterator = list.begin();
 	for (int i = 0; i < insert_index; i++)iterator++;
-	list.insert(iterator, insert_element);
+	list.insert(iterator, insert_count ,insert_element);
 	for (int i : list)cout << i << tab; cout << endl;
 
 	//erase
-	int erase_index;
+	/*int erase_index;
 	cout << "Введите индекс удаляемого элемента: "; cin >> erase_index;
 	std::list<int>::iterator position = list.begin();
 	for (int i = 0; i < erase_index; i++)position++;
 	list.erase(position);
+	for (int i : list)cout << i << tab; cout << endl;*/
+
+	int begin;
+	int end;
+	cout << "Введите диапазон удаляемых значений!" << endl;
+	cout << "Удалить: " << endl;
+	cout << "от "; cin >> begin; 
+	cout << "до "; cin >> end;
+	std::list<int>::iterator it1, it2;
+	it1 = it2 = list.begin();
+	for (int i = 0; i < begin; i++)it1++;
+	std::advance(it2, end);
+	list.erase(it1, it2);
 	for (int i : list)cout << i << tab; cout << endl;
 #endif // STL_LIST
 
