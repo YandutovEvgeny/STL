@@ -18,37 +18,33 @@ const std::map<int, std::string>& crimes =
 
 class Crime
 {
-	int crime_id;
-	std::string place;
+	std::string crime;   //Само правонарушение
+	std::string place;   //Место совершения деяния
 public:
-	int get_crime()const
+	const std::string& get_crime()const
 	{
-		return crime_id;
+		return crime;
 	}
 	const std::string& get_place()const
 	{
 		return place;
 	}
 	Crime(){}
-	Crime(int crime_id, const std::string& place)
+	Crime(const std::string& crime, const std::string& place)
 	{
-		this->crime_id	= crime_id;
+		this->crime	= crime;
 		this->place = place;
 	}
-	~Crime()
-	{
-		
-	}
+	~Crime(){}
 
 	std::ostream& print(std::ostream& os)const
 	{
-		return os << crimes.at(crime_id) << ", " << place;
+		return os << crime << ", " << place;
 	}
 	std::istream& scan(std::istream& is)
 	{
 		 is.ignore();  //Игнорирует один символ из буфера ввода (в данном случае '\n')
-		 //std::getline(is, crime_id, ',');
-		 cin >> crime_id;
+		 std::getline(is, crime, ',');
 		 std::getline(is, place);
 		 return is;
 	}
@@ -72,16 +68,16 @@ void main()
 	SetConsoleOutputCP(1251);
 	std::map<std::string, std::list<Crime>> base =
 	{
-		std::pair<std::string, std::list<Crime>>("m777ko", std::list<Crime>{Crime(1, "Улица Ленина"), Crime(2, "Улица Октябрьская")}),
-		std::pair<std::string, std::list<Crime>>("b510ma", std::list<Crime>{Crime(3, "ТЦ Экватор")}),
-		std::pair<std::string, std::list<Crime>>("a213pb", std::list<Crime>{Crime(4, "Красная площадь")})
+		std::pair<std::string, std::list<Crime>>("m777ko", std::list<Crime>{Crime("Превышение скорости", "Улица Ленина"), Crime("Проезд на красный", "Улица Октябрьская")}),
+		std::pair<std::string, std::list<Crime>>("b510ma", std::list<Crime>{Crime("Парковка в неположенном месте", "ТЦ Экватор")}),
+		std::pair<std::string, std::list<Crime>>("a213pb", std::list<Crime>{Crime("Оcкорбление офицера", "Красная площадь")})
 	};
 	/*for (std::list<Crime>::iterator it = base["m777ko"].begin(); it != base["m777ko"].end(); ++it)
 	{
 		cout << *it << endl;
 	}*/
 
-	std::string license_plate;
+	std::string license_plate;  //автомобильный номер 
 	Crime crime;
 	cout << "Введите номер автомобиля: "; cin >> license_plate;
 	cout << "Введите правонарушение: "; cin >> crime;
