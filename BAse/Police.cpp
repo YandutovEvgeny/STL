@@ -18,8 +18,8 @@ const std::map<int, std::string>& crimes =
 
 class Crime
 {
-	std::string crime;
-	std::string place;
+	std::string crime;   //Само правонарушение
+	std::string place;   //Место совершения деяния
 public:
 	const std::string& get_crime()const
 	{
@@ -35,10 +35,7 @@ public:
 		this->crime	= crime;
 		this->place = place;
 	}
-	~Crime()
-	{
-		
-	}
+	~Crime(){}
 
 	std::ostream& print(std::ostream& os)const
 	{
@@ -80,7 +77,7 @@ void main()
 		cout << *it << endl;
 	}*/
 
-	std::string license_plate;
+	std::string license_plate;  //автомобильный номер 
 	Crime crime;
 	cout << "Введите номер автомобиля: "; cin >> license_plate;
 	cout << "Введите правонарушение: "; cin >> crime;
