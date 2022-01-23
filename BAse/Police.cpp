@@ -78,6 +78,20 @@ void main()
 	{
 		cout << *it << endl;
 	}*/
+	
+	const int SIZE = 256;
+	char buffer[SIZE]{};
+	std::ifstream fin("Police.txt");
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			fin.getline(buffer, SIZE);
+			cout << buffer << endl;
+		}
+	}
+	else std::cerr << "File not found" << endl;
+	fin.close();
 
 	std::string license_plate;  //автомобильный номер 
 	Crime crime;
@@ -97,20 +111,7 @@ void main()
 	}
 	fout.close();
 	system("notepad Police.txt");
-	"\n-------------------------------------------------------------\n";
-	const int SIZE = 256;
-	char buffer[SIZE]{};
-	std::ifstream fin("Police.txt");
-	if (fin.is_open())
-	{
-		while (!fin.eof())
-		{
-			fin.getline(buffer, SIZE);
-			cout << buffer << endl;
-		}
-	}
-	else std::cerr << "File not found" << endl;
-	fin.close();
+	
 }
 
 void print(const std::map<std::string, std::list<Crime>>& base)
