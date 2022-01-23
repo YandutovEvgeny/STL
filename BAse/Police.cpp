@@ -50,13 +50,6 @@ public:
 		 std::getline(is, place);
 		 return is;
 	}
-
-	void to_file()
-	{
-		std::ofstream fout("Police.txt", std::ios_base::app);
-		fout << crimes.at(crime_id) << ", " << place;
-		fout << close();
-	}
 };
 
 std::ostream& operator<<(std::ostream& os, const Crime& obj)
@@ -92,6 +85,32 @@ void main()
 	cout << "Введите правонарушение: "; cin >> crime;
 	base[license_plate].push_back(crime);
 	print(base);
+
+	std::ofstream fout("Police.txt", std::ios_base::app);
+	for (std::map<std::string, std::list<Crime>>::iterator it = base.begin(); it != base.end(); ++it)
+	{
+		fout << it->first << ":\n";
+		for (std::list<Crime>::iterator l_it = it->second.begin(); l_it != it->second.end(); ++l_it)
+		{
+			fout << *l_it << endl; 
+		}
+	}
+	fout.close();
+	system("notepad Police.txt");
+	"\n-------------------------------------------------------------\n";
+	const int SIZE = 256;
+	char buffer[SIZE]{};
+	std::ifstream fin("Police.txt");
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			fin.getline(buffer, SIZE);
+			cout << buffer << endl;
+		}
+	}
+	else std::cerr << "File not found" << endl;
+	fin.close();
 }
 
 void print(const std::map<std::string, std::list<Crime>>& base)
