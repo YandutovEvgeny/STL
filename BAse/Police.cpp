@@ -3,6 +3,7 @@
 #include<map>
 #include<list>
 #include<Windows.h>
+#include<fstream>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -48,6 +49,13 @@ public:
 		 cin >> crime_id;
 		 std::getline(is, place);
 		 return is;
+	}
+
+	void to_file()
+	{
+		std::ofstream fout("Police.txt", std::ios_base::app);
+		fout << crimes.at(crime_id) << ", " << place;
+		fout << close();
 	}
 };
 
